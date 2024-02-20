@@ -19,7 +19,7 @@ return new class extends Migration
             // foreign key.
             $table->unsignedBigInteger('sector_id');
             $table->foreign('sector_id')->references('id')->on('sectors');
-            $table->string('experience');
+            $table->integer('experience_years');
             $table->double('salary');
             $table->string('city');
             $table->timestamps();
