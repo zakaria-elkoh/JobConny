@@ -43,15 +43,18 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function roles() {
+    public function roles()
+    {
         return $this->belongsToMany(Role::class);
     }
 
-    public function skills() {
+    public function skills()
+    {
         return $this->belongsToMany(Skill::class);
     }
 
-    public function jobOffers() {
-        return $this->belongsToMany(jobOffer::class);
+    public function company()
+    {
+        return $this->belongsToMany(Company::class);
     }
 }

@@ -5,11 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sector extends Model
+class Company extends Model
 {
     use HasFactory;
 
-    public function jobOffers() {
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function jobOffers()
+    {
         return $this->belongsToMany(JobOffer::class);
     }
 }

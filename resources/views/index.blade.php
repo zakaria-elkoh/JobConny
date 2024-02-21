@@ -2,6 +2,20 @@
 @include('layouts.nav')
 
 
+{{-- @foreach ($roles as $role )
+    @foreach ($role->roles as $role )
+        @dd($role->title)
+    @endforeach
+@endforeach --}}
+@foreach (Auth::user()->roles as $role)
+    {{-- @dd($role->title) --}}
+    <div class="bg-red-400 text-white mt-24">
+        {{ $role->title }}
+    </div>
+@endforeach
+
+{{-- @dd(2) --}}
+
 
 <section class="bg-[#222] py-28">
     <div class="max-w-screen-xl mx-auto px-6 flex">

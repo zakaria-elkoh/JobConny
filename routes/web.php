@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Representative\UserController as RepresentativeUserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
+
+Route::view('/', 'index');
+
+// Representative routes
+Route::prefix('reps/dashboard')->group(function () {
+    Route::resource('recruiters', RepresentativeUserController::class)->names('rep.dash.recruiters');
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
