@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Sector extends Model
 {
     use HasFactory;
+
+    public function jobOffers() {
+        return $this->belongsToMany(JobOffer::class);
+    }
 }
