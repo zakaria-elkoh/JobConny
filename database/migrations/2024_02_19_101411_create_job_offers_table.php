@@ -24,7 +24,7 @@ return new class extends Migration
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->integer('experience_years');
             $table->double('salary');
-            $table->string('city');
+            $table->string('location');
             $table->timestamps();
         });
     }

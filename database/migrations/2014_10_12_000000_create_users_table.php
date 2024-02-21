@@ -15,13 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->string('email')->unique();
+<<<<<<< HEAD
+            $table->string('email')->unique()->nullable();
+====
+>>>>>>> a5ad6669f218197c22e68c0b65d743830e8b51cb
             $table->string('phone')->unique()->nullable();
             // company forieng key
             $table->unsignedBigInteger('company_id')->nullable();
             $table->foreign('company_id')->references('id')->on('companies');
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
