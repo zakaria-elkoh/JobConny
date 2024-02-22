@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Representative\UserController as RepresentativeUserController;
+use App\Http\Controllers\User\UserController as UserUserController;
 use App\Http\Controllers\Representative\CompanyController as RepresentativeCompanyController;
 use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +29,7 @@ Route::prefix('reps/dashboard')->group(function () {
     Route::resource('recruiters', RepresentativeUserController::class)->names('rep.dash.recruiters');
 });
 
+Route::resource('users', UserUserController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
