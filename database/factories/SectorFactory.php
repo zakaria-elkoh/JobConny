@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Sector;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,10 +15,12 @@ class SectorFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+     protected $model = Sector::class;
     public function definition(): array
     {
         return [
-            //
+            'title' => $this->faker->unique()->word,
         ];
     }
 }

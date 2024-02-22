@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\jobOffer;
 use App\Http\Requests\StorejobOfferRequest;
 use App\Http\Requests\UpdatejobOfferRequest;

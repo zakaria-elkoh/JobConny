@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
+use GuzzleHttp\Promise\Create;
 
 class RoleController extends Controller
 {
@@ -13,7 +15,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        //
+        $roles=Role::all();
+        return view('admin.role.index',compact('roles'));
     }
 
     /**
@@ -21,7 +24,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.role.create');
     }
 
     /**
@@ -29,7 +32,9 @@ class RoleController extends Controller
      */
     public function store(StoreRoleRequest $request)
     {
-        //
+        $role=Role::create($request->all());
+        $role->save();
+        return redirect('admin/role');
     }
 
     /**
@@ -37,7 +42,7 @@ class RoleController extends Controller
      */
     public function show(Role $role)
     {
-        //
+        
     }
 
     /**
@@ -45,7 +50,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        //
+        return view('admin.role.edit',compact('role'));
     }
 
     /**
@@ -53,7 +58,9 @@ class RoleController extends Controller
      */
     public function update(UpdateRoleRequest $request, Role $role)
     {
-        //
+        $role->title=$request->title;
+        $role->save();
+        return redirect('admin/role');
     }
 
     /**
@@ -61,6 +68,7 @@ class RoleController extends Controller
      */
     public function destroy(Role $role)
     {
-        //
+        $role->delete();
+        return redirect('admin/role') ;
     }
 }

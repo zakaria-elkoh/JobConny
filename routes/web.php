@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Admin\JobOfferController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SectorController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Representative\UserController as RepresentativeUserController;
-use Illuminate\Support\Facades\Auth;
+use App\Models\JobOffer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,13 +19,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::view('/', 'index');
-
-// Representative routes
-Route::prefix('reps/dashboard')->group(function () {
-    Route::resource('recruiters', RepresentativeUserController::class)->names('rep.dash.recruiters');
+Route::prefix('admin')->group(function () {
+    Route::resource('sectors', SectorController::class)->names('admin.sectors');
+    Route::resource('roles', RoleController::class)->names('admin.roles');
+    Route::resource('joboffers', JobOfferController::class)->names('admin.joboffers');
 });
 
+Route::prefix('recruteur')->group(function () {
+});
+
+Route::get('/', function () {
+    return view('index');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
