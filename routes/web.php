@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Representative\UserController as RepresentativeUserController;
+use App\Http\Controllers\Representative\CompanyController as RepresentativeCompanyController;
+use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +23,7 @@ Route::view('/', 'index');
 
 // Representative routes
 Route::prefix('reps/dashboard')->group(function () {
+    Route::resource('company', RepresentativeCompanyController::class)->names('rep.dash.company');
     Route::resource('recruiters', RepresentativeUserController::class)->names('rep.dash.recruiters');
 });
 

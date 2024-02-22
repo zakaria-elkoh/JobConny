@@ -81,4 +81,15 @@ class UserController extends Controller
         $recruiter->delete();
         return redirect()->route('rep.dash.recruiters.index');
     }
+
+    public function trash()
+    {
+        
+        // trashed recruiters
+        $trashed_recruiters = User::onlyTrashed()
+        ->orderBy('deleted_at', 'desc')
+        ->get();
+
+        return view('rep.dash.recruiters.trash', compact('trashed_recruiters'));
+    }
 }
