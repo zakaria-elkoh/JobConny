@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\company;
-use App\Http\Requests\StorecompanyRequest;
-use App\Http\Requests\UpdatecompanyRequest;
+use App\Models\jobOffer;
+use App\Http\Requests\StorejobOfferRequest;
+use App\Http\Requests\UpdatejobOfferRequest;
 
-class CompanyController extends Controller
+class JobOfferController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         //
@@ -24,7 +27,7 @@ class CompanyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorecompanyRequest $request)
+    public function store(StorejobOfferRequest $request)
     {
         //
     }
@@ -32,7 +35,7 @@ class CompanyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(company $company)
+    public function show(jobOffer $jobOffer)
     {
         //
     }
@@ -40,7 +43,7 @@ class CompanyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(company $company)
+    public function edit(jobOffer $jobOffer)
     {
         //
     }
@@ -48,7 +51,7 @@ class CompanyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatecompanyRequest $request, company $company)
+    public function update(UpdatejobOfferRequest $request, jobOffer $jobOffer)
     {
         //
     }
@@ -56,7 +59,7 @@ class CompanyController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(company $company)
+    public function destroy(jobOffer $jobOffer)
     {
         //
     }

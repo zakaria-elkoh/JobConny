@@ -7,12 +7,12 @@
         @dd($role->title)
     @endforeach
 @endforeach --}}
-@foreach (Auth::user()->roles as $role)
-    {{-- @dd($role->title) --}}
+{{-- @foreach (Auth::user()->roles as $role)
+    @dd($role->title)
     <div class="bg-red-400 text-white mt-24">
         {{ $role->title }}
     </div>
-@endforeach
+@endforeach --}}
 
 {{-- @dd(2) --}}
 
