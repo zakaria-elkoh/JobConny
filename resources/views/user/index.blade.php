@@ -1,12 +1,17 @@
 @include('layouts.header')
 @include('layouts.nav')
 
+{{-- @dd(Auth::user()->getMedia()) --}}
+
+
 
 <section class="bg-[#222] py-28">
     <div class="max-w-screen-xl mx-auto px-6 flex">
         <div class="users-wrapper w-full flex flex-wrap gap-10 pt-7">
 
             @foreach ($users as $user)
+
+            
                 
                 <div class="max-w-sm bg-[#22222278] w-full md:w-1/2 lg:w-1/3 border border-gray-500 rounded-lg shadow">
                     <div class="flex justify-end px-4 pt-4">
@@ -32,7 +37,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col items-center pb-10">
-                        <img class="w-24 h-24 mb-3 rounded-full shadow-lg" src="https://source.unsplash.com/MP0IUfwrn0A" alt="Bonnie image"/>
+                        <img src="{{$user->getFirstMediaUrl('image')}}" class="w-24 h-24 mb-3 rounded-full shadow-lg"  alt="Bonnie image"/>
                         <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ $user->name }}</h5>
                         <span class="text-sm text-gray-500 dark:text-gray-400">{{ $user->job_name }}</span>
                         <div class="flex mt-4 md:mt-6">

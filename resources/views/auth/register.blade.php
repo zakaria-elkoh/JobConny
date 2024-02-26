@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
 
         <!-- Name -->
@@ -23,6 +23,12 @@
                 <option value="4">Condidate</option>
                 <option value="2">Representative</option>
             </select>
+        </div>
+
+        <!-- profile image -->
+        <div class="mt-4">
+            <label for="image" class="block mb-3 text-sm font-medium text-gray-900 dark:text-white">Profile Image:</label>
+            <input name="profile_image" type="file" id="image">
         </div>
 
         <!-- Password -->
