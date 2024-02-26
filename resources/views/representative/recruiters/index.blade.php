@@ -57,7 +57,7 @@
                                 @endforeach
                             </td>
                             <td class="py-4">
-                                <form action="" method="POST">
+                                <form action={{ route('rep.dash.recruiters.destroy', $user->id) }} method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</button>
