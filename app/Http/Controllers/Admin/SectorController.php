@@ -15,7 +15,7 @@ class SectorController extends Controller
      */
     public function index()
     {
-        Gate::authorize('manage-sectors');
+        // Gate::authorize('manage-sectors');
         $sectors=Sector::all();
         return view('admin.sector.index',compact('sectors'));
     }
@@ -25,7 +25,7 @@ class SectorController extends Controller
      */
     public function create()
     {
-        Gate::authorize('manage-sectors');
+        // Gate::authorize('manage-sectors');
         return view('admin.sector.create');
     }
 
@@ -34,7 +34,7 @@ class SectorController extends Controller
      */
     public function store(StoreSectorRequest $request)
     {
-        Gate::authorize('manage-sectors');
+        // Gate::authorize('manage-sectors');
         $sector = Sector::create($request->all());
         $sector->save();
         return redirect('admin/sectors');
@@ -45,7 +45,7 @@ class SectorController extends Controller
      */
     public function show(Sector $sector)
     {
-        Gate::authorize('manage-sectors');
+        // Gate::authorize('manage-sectors');
         $sector = Sector::all();
         return view('admin.sector.index',compact('sector'));
     }

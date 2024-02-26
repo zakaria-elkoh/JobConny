@@ -13,6 +13,7 @@ class JobApplication extends Model
     {
         return $this->belongsToMany(User::class);
     }
+    
     public function jobOffers()
     {
         return $this->belongsToMany(JobOffer::class);

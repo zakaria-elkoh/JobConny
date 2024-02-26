@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
@@ -16,7 +17,7 @@ class RoleController extends Controller
     public function index()
     {
         $roles=Role::all();
-        return view('admin.role.index',compact('roles'));
+        return view('admin.roles.index',compact('roles'));
     }
 
     /**
@@ -24,7 +25,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.role.create');
+        return view('admin.roles.create');
     }
 
     /**
@@ -34,7 +35,7 @@ class RoleController extends Controller
     {
         $role=Role::create($request->all());
         $role->save();
-        return redirect('admin/role');
+        return redirect('admin/roles');
     }
 
     /**
@@ -50,7 +51,7 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
-        return view('admin.role.edit',compact('role'));
+        return view('admin.roles.edit',compact('role'));
     }
 
     /**
@@ -60,13 +61,13 @@ class RoleController extends Controller
     {
         $role->title=$request->title;
         $role->save();
-        return redirect('admin/role');
+        return redirect('admin/roles');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function deleteRoleAndEditRole($roleId)
+    public function destroy($roleId)
     {
         DB::transaction(function () use ($roleId) {
             $role = Role::findOrFail($roleId);
@@ -81,6 +82,7 @@ class RoleController extends Controller
             // Now delete the role
             $role->delete(); // Or $role->forceDelete() if needed
         });
-        return redirect('admin/role') ;
+
+        return redirect('admin/roles');
     }
 }

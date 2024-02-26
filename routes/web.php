@@ -1,8 +1,10 @@
 <?php
 
-use App\Http\Controllers\Admin\JobOfferController;
-use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\SectorController;
+use App\Http\Controllers\Admin\JobOfferController as AdminJobOfferController;
+use App\Http\Controllers\Admin\RoleController as AdminRoleController;
+use App\Http\Controllers\Admin\SectorController as AdminSectorController;
+use App\Http\Controllers\Admin\CompanyController as AdminCompanyController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\ProfileController;
 use App\Models\JobOffer;
 use Illuminate\Support\Facades\Route;
@@ -20,9 +22,11 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('admin')->group(function () {
-    Route::resource('sectors', SectorController::class)->names('admin.sectors');
-    Route::resource('roles', RoleController::class)->names('admin.roles');
-    Route::resource('joboffers', JobOfferController::class)->names('admin.joboffers');
+    Route::resource('sectors', AdminSectorController::class)->names('admin.sectors');
+    Route::resource('users', AdminUserController::class)->names('admin.users');
+    Route::resource('companies', AdminCompanyController::class)->names('admin.companies');
+    Route::resource('roles', AdminRoleController::class)->names('admin.roles');
+    Route::resource('joboffers', AdminJobOfferController::class)->names('admin.joboffers');
 });
 
 Route::prefix('recruteur')->group(function () {
