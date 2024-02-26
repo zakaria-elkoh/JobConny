@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
-use GuzzleHttp\Promise\Create;
 use Illuminate\Support\Facades\DB;
 
 class RoleController extends Controller
@@ -82,7 +81,6 @@ class RoleController extends Controller
             // Now delete the role
             $role->delete(); // Or $role->forceDelete() if needed
         });
-
-        return response()->json(['message' => 'Role and associated users deleted successfully']);
+        return redirect('admin/role') ;
     }
 }
