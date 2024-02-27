@@ -19,6 +19,9 @@ class User extends Authenticatable implements HasMedia
      *
      * @var array<int, string>
      */
+
+    protected $with = ['roles'];
+
     protected $fillable = [
         'name',
         'email',

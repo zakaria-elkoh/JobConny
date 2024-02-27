@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Representative;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreUserRequest;
 use App\Models\User;
+use Illuminate\Auth\Access\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate as FacadesGate;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -15,7 +18,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+
+        $this->authorize('isRepresentative');
+
+        if (Auth::user()->company_id == null) {
+            return redirect()->route('rep.dash.company.create');
+        }
+
+        $users = User::where('company_id', Auth::user()->company_id)->whereNotNull('company_id')->get();
         return view('representative.recruiters.index', compact('users'));
     }
 
@@ -32,10 +42,10 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        // dd($request->all());
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'company_id' => Auth::user()->company_id,
             'password' => Hash::make($request->password),
         ]);
 
@@ -72,7 +82,7 @@ class UserController extends Controller
 
         return redirect()->route('rep.dash.recruiters.index');
     }
-    
+
     /**
      * Remove the specified resource from storage.
      */
@@ -84,11 +94,11 @@ class UserController extends Controller
 
     public function trash()
     {
-        
+
         // trashed recruiters
         $trashed_recruiters = User::onlyTrashed()
-        ->orderBy('deleted_at', 'desc')
-        ->get();
+            ->orderBy('deleted_at', 'desc')
+            ->get();
 
         return view('rep.dash.recruiters.trash', compact('trashed_recruiters'));
     }

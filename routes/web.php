@@ -23,12 +23,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'index');
 
+Route::get('/', function () {
+    return view('index');
+})->name('home');
+
+Route::get('/home', function () {
+    return view('index');
+})->name('home');
+
 // Representative routes
 Route::prefix('reps/dashboard')->group(function () {
     Route::resource('company', RepresentativeCompanyController::class)->names('rep.dash.company');
     Route::resource('recruiters', RepresentativeUserController::class)->names('rep.dash.recruiters');
 });
 
+// user routes
 Route::resource('users', UserUserController::class);
 
 Route::get('/dashboard', function () {

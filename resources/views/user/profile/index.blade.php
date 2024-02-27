@@ -1,11 +1,12 @@
 @include('layouts.header')
+@include('layouts.nav')
 
 {{-- <body class="font-sans antialiased text-gray-900 leading-normal tracking-wider bg-cover"
     style="background-image:url('https://source.unsplash.com/1L71sPT5XKc');"> --}}
 
 
 
-    <div class="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto my-32 lg:my-0">
+    <div class="max-w-4xl flex items-center h-auto lg:h-screen flex-wrap mx-auto mb-32 mt-40  lg:my-0">
 
         <!--Main Col-->
         <div id="profile"
@@ -33,12 +34,20 @@
                     </svg> {{ $user->adress }} - 25.0000° N, 71.0000° W
                 </p>
                 <p class="pt-8 text-sm">{{ $user->description }}</p>
-
-                <div class="pt-12 pb-8">
-                    <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
-				         Get In Touch
-				     </button>
-                </div>
+                
+                @if ($user->id !== Auth::user()->id)
+                    <div class="pt-12 pb-8">
+                        <button class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
+                            Get In Touch
+                        </button>
+                    </div>
+                @else
+                    <div class="pt-12 pb-8">
+                        <a href={{ route('users.edit', Auth::user()->id) }} class="bg-green-700 hover:bg-green-900 text-white font-bold py-2 px-4 rounded-full">
+                            Edit my profile
+                        </a>
+                    </div>
+                @endif
 
                 <div class="mt-6 pb-16 lg:pb-0 w-4/5 lg:w-full mx-auto flex flex-wrap items-center justify-between">
                     <a class="link" href="#" data-tippy-content="@facebook_handle">

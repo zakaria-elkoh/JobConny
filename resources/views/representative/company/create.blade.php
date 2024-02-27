@@ -4,7 +4,7 @@
 
 <form class="p-6 bg-[#333] max-w-screen-md mx-auto mt-32 mb-10 rounded-3xl" action={{route('rep.dash.company.store')}} method="POST">
     @csrf
-    <h2 class="text-3xl font-extrabold mb-5 text-center dark:text-white">Create a Company:</h2>
+    <h2 class="text-3xl font-extrabold mb-16 mt-6 text-center dark:text-white">You should Create a Company First:</h2>
     <div>
         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name:</label>
         <input type="text" name="name" value="{{old('name')}}" id="name" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Company Name">

@@ -7,14 +7,14 @@
                 </span>
                 <span class="flex-1 ms-3 whitespace-nowrap">Home</span>
             </a>
-            <li class="rounded-lg">
+            {{-- <li class="rounded-lg">
                 <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <span class="material-symbols-outlined">
                         leaderboard
                     </span>
                     <span class="ms-3">Dashboard</span>
                 </a>
-            </li>
+            </li> --}}
             <li class="rounded-lg">
                 <a href={{ route('rep.dash.recruiters.index') }} class="{{Route::is('rep.dash.recruiters.index') ? 'bg-gray-700' : ''}} flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
@@ -48,10 +48,7 @@
                         </svg>
                         <span class="ms-3 whitespace-nowrap">Log out</span>
                     </button>
-
                 </form>
-                {{-- <a href="{{route('logout')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                </a> --}}
             </li>
         </ul>
     </div>

@@ -2,7 +2,7 @@
 <nav class="bg-[#222] border-b z-50 border-gray-600 fixed top-0 left-0 w-full">
     <div class="container flex flex-wrap items-center justify-between mx-auto p-6">
         <!-- the logo -->
-        <a href="#" class="flex items-center grow space-x-3 rtl:space-x-reverse">
+        <a href={{ route('home') }} class="flex items-center grow space-x-3 rtl:space-x-reverse">
             <span class="self-center text-2xl text-white font-bold whitespace-nowrap">Job<span class="text-blue-400">Conny</span></span>
         </a>
      
@@ -17,11 +17,29 @@
         <div class="hidden grow w-full md:block md:w-auto" id="navbar-default">
             <ul class="font-medium text-center flex flex-col justify-end px-4 py-10 md:p-0 mt-4 border border-gray-100 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0">
                 <li>
-                    <a href="/" class="text-white block py-2 px-3 bg-blue-700 hover:text-blue-400 rounded md:bg-transparent md:p-0 " >Home</a>
+                    <a href="/" class="{{ Route::is('home') ? 'text-blue-400' : 'text-white'; }} block py-2 px-3 bg-blue-700 hover:text-blue-400 rounded md:bg-transparent md:p-0 " >Home</a>
                 </li>
-                @can('is_admin_or_partner')
+                <li>
+                    <a href="{{route('users.index')}}" class="{{ Route::is('users.index') ? 'text-blue-400' : 'text-white'; }} block mb-8 md:mb-0 py-2 px-3 rounded hover:text-blue-400 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0">Employees</a>
+                </li>
+                @can('isUserWithoutProfile')
                     <li>
-                        <a href="{{route('projects.create')}}" class="text-white block mb-8 md:mb-0 py-2 px-3 rounded hover:text-blue-400 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0">Add a Project</a>
+                        <a href="{{route('users.create')}}" class="{{ Route::is('users.create') ? 'text-blue-400' : 'text-white'; }} block mb-8 md:mb-0 py-2 px-3 rounded hover:text-blue-400 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0">Complete profile</a>
+                    </li>
+                @endcan
+                @can('isUserWithProfile')
+                    <li>
+                        <a href="{{route('users.show', Auth::user()->id)}}" class="{{ Route::is('users.show') ? 'text-blue-400' : 'text-white'; }} block mb-8 md:mb-0 py-2 px-3 rounded hover:text-blue-400 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0">My profile</a>
+                    </li>
+                @endcan
+                @can('isRepresentativeWithoutCompany')
+                    <li>
+                        <a href="{{route('rep.dash.company.create')}}" class="{{ Route::is('rep.dash.company.create') ? 'text-blue-400' : 'text-white'; }} block mb-8 md:mb-0 py-2 px-3 rounded hover:text-blue-400 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0">Create Company</a>
+                    </li>
+                @endcan
+                @can('isRepresentativeWithCompany')
+                    <li>
+                        <a href="{{route('rep.dash.recruiters.index')}}" class="text-white block mb-8 md:mb-0 py-2 px-3 rounded hover:text-blue-400 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0">Dashboard</a>
                     </li>
                 @endcan
                 {{-- check if the user logged in --}}

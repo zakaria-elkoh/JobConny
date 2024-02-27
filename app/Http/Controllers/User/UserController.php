@@ -17,10 +17,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        // $users = User::all();
-        // return view('user.index', compact('users'));
-
-        // $user = User::find();
+        $users = User::all();
+        return view('user.index', compact('users'));
     }
 
     /**
@@ -37,7 +35,6 @@ class UserController extends Controller
     public function store(StoreProfileRequest $request)
     {
 
-        // dd(Auth::user());
         $user = Auth::user();
 
         $user->update([
@@ -62,22 +59,28 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(User $recruiter)
+    public function edit(User $user)
     {
-        // return view('representative.recruiters.edit', compact('recruiter'));
+
+        return view('user.profile.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $recruiter)
+    public function update(Request $request, User $user)
     {
-        // $recruiter->update([
-        //     'name' => $request->name,
-        //     'email' => $request->email
-        // ]);
 
-        // return redirect()->route('rep.dash.recruiters.index');
+        $user->update([
+            'name' => $request->name,
+            'field' => $request->field,
+            'experience' => $request->experience,
+            'adress' => $request->adress,
+            'job_name' => $request->job_name,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('users.show', Auth::user()->id);
     }
 
     /**
