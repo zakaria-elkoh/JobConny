@@ -19,7 +19,7 @@
                     <tr>
                         <th scope="col" class="px-6 py-3">Name</th>
                         <th scope="col" class="px-6 py-3">Email</th>
-                        <th scope="col" class="px-6 py-3">Application Count</th>
+                        {{-- <th scope="col" class="px-6 py-3">Application Count</th> --}}
                         <th scope="col" class="px-6 py-3">Role</th> 
                         <th scope="col" class="px-6 py-3">Actions</th> 
                     </tr>
@@ -29,7 +29,7 @@
                         <tr class="odd:bg-white text-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                             <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">{{ $user->name }}</td>
                             <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">{{ $user->email }}</td>
-                            <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">{{ $user->job_applications_count }}</td>
+                            {{-- <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">{{ $user->job_applications_count }}</td> --}}
                             <td class="px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white"> 
                                 {{ $user->roles->pluck('title')->implode(', ') }} 
                             </td> 

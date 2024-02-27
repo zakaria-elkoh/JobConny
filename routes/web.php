@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::prefix('admin')->group(function () {
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('sectors', AdminSectorController::class)->names('admin.sectors');
     Route::resource('users', AdminUserController::class)->names('admin.users');
     Route::resource('companies', AdminCompanyController::class)->names('admin.companies');
@@ -36,9 +36,13 @@ Route::get('/', function () {
     return view('index');
 });
 
+
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

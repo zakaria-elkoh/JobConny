@@ -42,6 +42,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function hasRoleName($roleName) 
+    {
+        return $this->roles->contains('title', $roleName);
+    }
 
     public function hasRole($roleName) 
     {

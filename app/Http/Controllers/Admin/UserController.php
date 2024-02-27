@@ -9,9 +9,10 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index() // You can name this function however you like
+    public function index()
     {
-        $users = User::all();
+        $currentUserId = auth()->id();
+        $users = User::where('id', '!=', $currentUserId)->get();
         return view('admin.user.index', compact('users'));
     }
     public function edit(User $user)
