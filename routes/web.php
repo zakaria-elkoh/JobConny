@@ -1,5 +1,6 @@
 <?php
 
+
 use App\Http\Controllers\Admin\JobOfferController as AdminJobOfferController;
 use App\Http\Controllers\Admin\RoleController as AdminRoleController;
 use App\Http\Controllers\Admin\SectorController as AdminSectorController;
@@ -10,6 +11,13 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Representative\UserController;
 use App\Http\Controllers\User\JobOfferController;
 use App\Models\JobOffer;
+
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Representative\UserController as RepresentativeUserController;
+use App\Http\Controllers\User\UserController as UserUserController;
+use App\Http\Controllers\Representative\CompanyController as RepresentativeCompanyController;
+use App\Models\Company;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,7 +46,17 @@ Route::prefix('recruiter')->group(function () {
 Route::prefix('recruteur')->group(function () {
 });
 
-Route::get('/', [JobOfferController::class , 'index']);
+Route::get('/', [JobOfferController::class , 'index'])->name('home');
+Route::get('/home', [JobOfferController::class , 'index'])->name('home');
+
+// Route::get('/', function () {
+//     return view('index');
+// })->name('home');
+
+// Route::get('/home', function () {
+//     return view('index');
+// })->name('home');
+
 
 
 
@@ -49,6 +67,13 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware('auth')->group(function () {
+    // user routes
+    Route::resource('users', UserUserController::class);
+    // Representative routes
+    Route::prefix('reps/dashboard')->group(function () {
+        Route::resource('company', RepresentativeCompanyController::class)->names('rep.dash.company');
+        Route::resource('recruiters', RepresentativeUserController::class)->names('rep.dash.recruiters');
+    });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
