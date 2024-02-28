@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProfileRequest;
 use App\Http\Requests\StoreUserRequest;
+use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('user.profile.create');
+        $skills = Skill::all();
+        return view('user.profile.create', compact('skills'));
     }
 
     /**
@@ -34,6 +36,7 @@ class UserController extends Controller
      */
     public function store(StoreProfileRequest $request)
     {
+
 
         $user = Auth::user();
 
@@ -45,6 +48,8 @@ class UserController extends Controller
             'description' => $request->description,
         ]);
 
+        $user->skills()->attach($request->skills);
+
         return redirect()->route('users.index');
     }
 
@@ -53,7 +58,8 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return view('user.profile.index', compact('user'));
+        $skills = $user->skills;
+        return view('user.profile.index', compact('user', 'skills'));
     }
 
     /**
@@ -62,7 +68,9 @@ class UserController extends Controller
     public function edit(User $user)
     {
 
-        return view('user.profile.edit', compact('user'));
+        $skills = Skill::all();
+        // $user_skills = Skill::all();
+        return view('user.profile.edit', compact('user', 'skills'));
     }
 
     /**
@@ -79,6 +87,8 @@ class UserController extends Controller
             'job_name' => $request->job_name,
             'description' => $request->description,
         ]);
+
+        $user->skills()->sync($request->skills);
 
         return redirect()->route('users.show', Auth::user()->id);
     }
