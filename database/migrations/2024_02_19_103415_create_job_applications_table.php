@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job_offer_user', function (Blueprint $table) {
+        Schema::create('job_application', function (Blueprint $table) {
             // job offer foreign key.
             $table->unsignedBigInteger('job_offer_id');
             $table->foreign('job_offer_id')->references('id')->on('job_offers');
             // user foreign key.
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->string('status');
         });
     }
 
