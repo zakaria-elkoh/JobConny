@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Company;
 use App\Models\Skill;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
@@ -43,9 +44,9 @@ class SkillPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Skill $skill): bool
+    public function delete(User $user, Company $company)
     {
-        //
+        return $user->hasRole('admin');
     }
 
     /**

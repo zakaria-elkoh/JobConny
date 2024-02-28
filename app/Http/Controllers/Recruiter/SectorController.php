@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sector;
-use App\Http\Requests\StoreSectorRequest;
-use App\Http\Requests\UpdateSectorRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
 class SectorController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         //
@@ -27,7 +24,7 @@ class SectorController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSectorRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -51,7 +48,7 @@ class SectorController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSectorRequest $request, Sector $sector)
+    public function update(Request $request, Sector $sector)
     {
         //
     }

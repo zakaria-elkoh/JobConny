@@ -7,20 +7,32 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, InteractsWithMedia;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
+
+    protected $with = ['roles'];
+
     protected $fillable = [
         'name',
         'email',
         'password',
+        'phone',
+        'field',
+        'adress',
+        'experience',
+        'description',
+        'job_name',
+        'company_id',
     ];
 
     /**
@@ -42,6 +54,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function hasRoleName($roleName) 
+    {
+        return $this->roles->contains('title', $roleName);
+    }
+
+    public function hasRole($roleName) 
+    {
+        return $this->roles()->where('title', $roleName)->exists();
+    }
 
     public function roles()
     {
