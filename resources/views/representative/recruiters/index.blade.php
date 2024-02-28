@@ -53,7 +53,7 @@
                             </td>
                             <td class="px-6 py-4">
                                 @foreach ($user->roles as $role)
-                                    {{$role->name}}
+                                    {{$role->title}}
                                 @endforeach
                             </td>
                             <td class="py-4">

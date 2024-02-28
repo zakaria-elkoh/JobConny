@@ -2,26 +2,13 @@
 @include('layouts.nav')
 
 
-{{-- @foreach ($roles as $role )
-    @foreach ($role->roles as $role )
-        @dd($role->title)
-    @endforeach
-@endforeach --}}
-{{-- @foreach (Auth::user()->roles as $role)
-    @dd($role->title)
-    <div class="bg-red-400 text-white mt-24">
-        {{ $role->title }}
-    </div>
-@endforeach --}}
-
-{{-- @dd(2) --}}
 
 
 <section class="bg-[#222] py-28">
     <div class="max-w-screen-xl mx-auto px-6 flex">
         <div class="wikis-wrapper w-full md:basis-2/3 flex flex-col gap-5 pt-7">
             <a href="#" class="w-full p-5 bg-['#555'] hover:bg-[#2a2a2a] flex items-center flex-col md:flex-row border border-gray-700 rounded-lg shadow">
-                <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="public/assets/wiki.png" alt="img">
+                <img  class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="public/assets/wiki.png" alt="img">
                 <div class="w-full flex flex-col justify-between p-4 leading-normal">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">this is the title</h5>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">this is the description</p>
