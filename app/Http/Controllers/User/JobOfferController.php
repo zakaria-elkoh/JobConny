@@ -23,6 +23,20 @@ class JobOfferController extends Controller
         return view('index', compact('jobOffers')); 
     }
 
+    public function search(Request $request)
+    {
+        $keyword = $request->query('keyword');
+
+        $searchJobOffers = JobOffer::where('title', 'like', '%' . $keyword . '%')
+            ->orWhere('description', 'like', '%' . $keyword . '%')
+            ->orWhereHas('sector', function ($query) use ($keyword) {
+                $query->where('title', 'like', '%' . $keyword . '%');
+            })
+            ->get();
+            $jobOffers = JobOffer::with('media')->get();
+        return view('index', compact('searchJobOffers', 'keyword' , 'jobOffers'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

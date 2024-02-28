@@ -31,6 +31,16 @@ class AuthServiceProvider extends ServiceProvider
 
         $this->registerPolicies();
 
+        Gate::define('isRecruter', function (): bool {
+            $roles = Auth::user()->roles;
+            return $roles->contains('title', 'Admin');
+        });
+
+        Gate::define('isAdmin', function (): bool {
+            $roles = Auth::user()->roles;
+            return $roles->contains('title', 'Admin');
+        });
+
         Gate::define('isUser', function (): bool {
             $roles = Auth::user()->roles;
             return $roles->contains('title', 'User');

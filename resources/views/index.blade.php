@@ -31,8 +31,30 @@
 
     </div>
 </section>
-
-
+<section>
+    <form action="{{ route('joboffers.search') }}" method="GET">
+        <input type="text" name="keyword" placeholder="Enter keyword to search..." />
+        <button type="submit">Search</button>
+    </form>
+    <div id="search-results"> 
+        @if (isset($searchJobOffers)) 
+            @foreach($searchJobOffers as $jobOffer) 
+                <a href="#" class="w-full p-5 bg-['#555'] hover:bg-[#2a2a2a] flex items-center flex-col md:flex-row border border-gray-700 rounded-lg shadow">
+                    <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="{{ $jobOffer->getFirstMediaUrl('job-offers')}}" alt="Job Offer Image"> 
+                    <div class="w-full flex flex-col justify-between p-4 leading-normal">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $jobOffer->title }}</h5>
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $jobOffer->description }}</p>
+                        <div class="flex justify-between text-white"> ‌
+                            <span>{{ $jobOffer->created_at->format('d/m/Y') }}</span>
+                        </div>
+                    </div>
+                </a>
+            @endforeach 
+        @else 
+            <p>Please initiate a search</p> 
+        @endif 
+    </div>
+</section>
 
 
 @include('layouts.footer')

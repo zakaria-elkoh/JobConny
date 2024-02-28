@@ -39,9 +39,13 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('roles', AdminRoleController::class)->names('admin.roles');
     Route::resource('joboffers', AdminJobOfferController::class)->names('admin.joboffers');
 });
+
 Route::prefix('recruiter')->group(function () {
     Route::resource('joboffers', RecruiterJobOfferController::class)->names('recruiter.joboffers');
 });
+
+Route::get('/joboffers/search', [JobOfferController::class, 'search'])->name('joboffers.search');
+
 
 Route::prefix('recruteur')->group(function () {
 });
