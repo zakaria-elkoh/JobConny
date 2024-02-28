@@ -38,5 +38,5 @@
             <span class="text-red-400">{{$message}}</span>
         @enderror
     </div> --}}
-    <button type="submit" class="text-white block mx-auto bg-blue-700 focus:outline-none hover:bg-blue-800 focus:ring-4 font-medium rounded-full text-sm py-2.5 px-10 mt-5">Create a project</button>
+    <button type="submit" class="text-white block mx-auto bg-blue-700 focus:outline-none hover:bg-blue-800 focus:ring-4 font-medium rounded-full text-sm py-2.5 px-10 mt-5">Create a Role</button>
 </form>

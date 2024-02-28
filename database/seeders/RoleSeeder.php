@@ -13,16 +13,7 @@ class RoleSeeder extends Seeder
      */
     public function run(): void
     {
-        $sectors = [
-            ['title' => 'Admin'],
-            ['title' => 'Recruiter'],
-            ['title' => 'Rh'],
-            ['title' => 'User']
-        ];
 
-        foreach ($sectors as $sector) {
-            Role::create($sector);
-        }
         Role::create(['title' => 'Admin']);
         Role::create(['title' => 'Representative']);
         Role::create(['title' => 'Recruiter']);

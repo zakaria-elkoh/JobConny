@@ -26,7 +26,6 @@ class AuthServiceProvider extends ServiceProvider
     {
         // $this->registerPolicies();
 
-
         $this->registerPolicies();
 
         // Gate::define('manage-sectors', function ($user) {
