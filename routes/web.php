@@ -5,7 +5,10 @@ use App\Http\Controllers\Admin\RoleController as AdminRoleController;
 use App\Http\Controllers\Admin\SectorController as AdminSectorController;
 use App\Http\Controllers\Admin\CompanyController as AdminCompanyController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\Recruiter\JobOfferController as RecruiterJobOfferController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Representative\UserController;
+use App\Http\Controllers\User\JobOfferController;
 use App\Models\JobOffer;
 use Illuminate\Support\Facades\Route;
 
@@ -28,13 +31,14 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::resource('roles', AdminRoleController::class)->names('admin.roles');
     Route::resource('joboffers', AdminJobOfferController::class)->names('admin.joboffers');
 });
+Route::prefix('recruiter')->group(function () {
+    Route::resource('joboffers', RecruiterJobOfferController::class)->names('recruiter.joboffers');
+});
 
 Route::prefix('recruteur')->group(function () {
 });
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [JobOfferController::class , 'index']);
 
 
 

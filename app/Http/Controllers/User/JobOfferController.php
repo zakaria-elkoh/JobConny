@@ -1,19 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Models\jobOffer;
-use App\Http\Requests\StorejobOfferRequest;
-use App\Http\Requests\UpdatejobOfferRequest;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\HasMedia;
+use App\Models\JobOffer;
+use App\Http\Controllers\Controller;
+use App\Models\Sector;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobOfferController extends Controller
 {
+    use InteractsWithMedia;
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() 
     {
-        //
+        $jobOffers = JobOffer::with('media')->get(); 
+        return view('index', compact('jobOffers')); 
     }
 
     /**
@@ -27,7 +34,7 @@ class JobOfferController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StorejobOfferRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -51,7 +58,7 @@ class JobOfferController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatejobOfferRequest $request, jobOffer $jobOffer)
+    public function update(Request $request, jobOffer $jobOffer)
     {
         //
     }
