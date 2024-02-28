@@ -31,20 +31,20 @@ Route::get('/home', function () {
     return view('index');
 })->name('home');
 
-// Representative routes
-Route::prefix('reps/dashboard')->group(function () {
-    Route::resource('company', RepresentativeCompanyController::class)->names('rep.dash.company');
-    Route::resource('recruiters', RepresentativeUserController::class)->names('rep.dash.recruiters');
-});
 
-// user routes
-Route::resource('users', UserUserController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    // user routes
+    Route::resource('users', UserUserController::class);
+    // Representative routes
+    Route::prefix('reps/dashboard')->group(function () {
+        Route::resource('company', RepresentativeCompanyController::class)->names('rep.dash.company');
+        Route::resource('recruiters', RepresentativeUserController::class)->names('rep.dash.recruiters');
+    });
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

@@ -17,6 +17,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
+        $this->authorize('isRepresentativeWithCompany');
         $company = Company::findOrFail(Auth::user()->company_id);
         return view('representative.company.index', compact('company'));
     }
@@ -26,6 +27,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
+        $this->authorize('isRepresentativeWithoutCompany');
         return view('representative.company.create');
     }
 
@@ -62,7 +64,7 @@ class CompanyController extends Controller
      */
     public function show(Company $company)
     {
-        //
+        return "hello from the show";
     }
 
     /**
@@ -71,8 +73,9 @@ class CompanyController extends Controller
     // public function edit(Company $company)
     public function edit()
     {
+        // $this->authorize('isRepresentativeWithCompany');
         $company = Company::findOrFail(Auth::company_id());
-        dd($company);
+        // dd($company);
         return view('representative.company.create', compact('company'));
     }
 
@@ -81,7 +84,15 @@ class CompanyController extends Controller
      */
     public function update(UpdatecompanyRequest $request, Company $company)
     {
-        dd($request->all());
+        $company->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'adress' => $request->adress,
+            'phone' => $request->phone,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->back();
     }
 
     /**

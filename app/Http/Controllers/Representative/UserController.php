@@ -34,6 +34,7 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->authorize('isRepresentative');
         return view('representative.recruiters.create');
     }
 
@@ -67,6 +68,7 @@ class UserController extends Controller
      */
     public function edit(User $recruiter)
     {
+        $this->authorize('isRepresentative');
         return view('representative.recruiters.edit', compact('recruiter'));
     }
 

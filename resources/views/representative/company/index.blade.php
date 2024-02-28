@@ -17,7 +17,7 @@
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
 
             {{-- <a href={{ route('rep.dash.recruiters.create') }} class="text-white block w-fit bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-6 my-10 ml-auto dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Add Recruiter</a> --}}
-            <form class="p-6 bg-[#333] max-w-screen-md mx-auto mt-16 mb-10 rounded-3xl" action={{route('rep.dash.company.update', 1)}} method="POST">
+            <form class="p-6 bg-[#333] max-w-screen-md mx-auto mt-16 mb-10 rounded-3xl" action={{route('rep.dash.company.update', Auth::user()->company_id)}} method="POST">
                 @csrf
                 @method('PUT')
                 <h2 class="text-3xl font-extrabold mb-5 text-center dark:text-white">Company Details:</h2>
@@ -65,20 +65,6 @@
                         <span class="text-red-400">{{$message}}</span>
                     @enderror
                 </div>
-                {{-- <div>
-                    <label for="password" class="block mb-2 text-sm mt-5 font-medium text-gray-900 dark:text-white">Password:</label>
-                    <input type="text" name="password" value="{{old('password')}}" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Password">
-                    @error('password')
-                        <span class="text-red-400">{{$message}}</span>
-                    @enderror
-                </div>
-                <div>
-                    <label for="password_confirmation" class="block mb-2 text-sm mt-5 font-medium text-gray-900 dark:text-white">Confirm Password:</label>
-                    <input type="text" name="password_confirmation" value="{{old('password_confirmation')}}" id="password_confirmation" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Confirm password">
-                    @error('password_confirmation')
-                        <span class="text-red-400">{{$message}}</span>
-                    @enderror
-                </div> --}}
                 <button type="submit" name="create_recruiter" class="text-white block mx-auto bg-blue-700 focus:outline-none hover:bg-blue-800 focus:ring-4 font-medium rounded-full text-sm py-2.5 px-10 mt-12">Edit My Company</button>
             </form>
 
