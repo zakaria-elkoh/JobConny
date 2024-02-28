@@ -24,13 +24,15 @@ class AuthServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // $this->registerPolicies();
 
         $this->registerPolicies();
 
-        // Gate::define('manage-sectors', function ($user) {
-        //     return $user->roles()->where('title', 'Admin')->exists();
 
+        Gate::define('isRecruter', function (): bool {
+            $roles = Auth::user()->roles;
+            return $roles->contains('title', 'Recruter');
+        });
+      
         Gate::define('isUser', function (): bool {
             $roles = Auth::user()->roles;
             return $roles->contains('title', 'User');

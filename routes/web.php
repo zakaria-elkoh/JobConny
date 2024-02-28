@@ -44,6 +44,9 @@ Route::prefix('recruiter')->group(function () {
     Route::resource('joboffers', RecruiterJobOfferController::class)->names('recruiter.joboffers');
 });
 
+Route::get('/joboffers/search', [JobOfferController::class, 'search'])->name('joboffers.search');
+
+
 Route::prefix('recruteur')->group(function () {
 });
 
