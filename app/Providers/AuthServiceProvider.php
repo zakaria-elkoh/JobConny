@@ -26,8 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('manage-sectors', function ($user) {
-            return $user->roles()->where('title', 'Admin')->exists();
+        // Gate::define('manage-sectors', function ($user) {
+        //     return $user->roles()->where('title', 'Admin')->exists();
 
         $this->registerPolicies();
 

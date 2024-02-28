@@ -16,14 +16,14 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('contract_type');
-            // foreign key.
+            // sector foreign key.
             $table->unsignedBigInteger('sector_id');
             $table->foreign('sector_id')->references('id')->on('sectors')->onDelete('cascade');
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->integer('experience_years');
             $table->double('salary');
-            $table->string('location');
+            $table->string('city');
             $table->timestamps();
         });
     }
