@@ -1,4 +1,4 @@
-{{-- 
+
 @include('layouts.header')
 @include('layouts.nav')
 
@@ -64,4 +64,4 @@
         @enderror
     </div> --}}
     <button type="submit" name="create_company" class="text-white block mx-auto bg-blue-700 focus:outline-none hover:bg-blue-800 focus:ring-4 font-medium rounded-full text-sm py-2.5 px-10 mt-12">Create Company</button>
-</form> --}}
+</form>

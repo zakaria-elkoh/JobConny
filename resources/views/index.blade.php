@@ -14,7 +14,7 @@
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $jobOffer->title }}</h5>
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $jobOffer->description }}</p>
                         <div class="flex justify-between text-white"> ‌
-                            <span>{{ $jobOffer->created_at->format('d/m/Y') }}</span>
+                            {{-- <span>{{ $jobOffer->created_at->format('d/m/Y') }}</span> --}}
                         </div>
                     </div>
                 </a>

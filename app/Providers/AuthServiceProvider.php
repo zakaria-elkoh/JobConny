@@ -36,6 +36,11 @@ class AuthServiceProvider extends ServiceProvider
             return $roles->contains('title', 'User');
         });
 
+        Gate::define('isAdmin', function (): bool {
+            $roles = Auth::user()->roles;
+            return $roles->contains('title', 'Admin');
+        });
+
         Gate::define('isUserWithoutProfile', function (): bool {
             $roles = Auth::user()->roles;
             return $roles->contains('title', 'User') && Auth::user()->description == null;
