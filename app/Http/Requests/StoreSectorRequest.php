@@ -11,7 +11,7 @@ class StoreSectorRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class StoreSectorRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|unique:sectors,title,|max:20'
         ];
     }
 }

@@ -1,27 +1,6 @@
 @include('layouts.header')
 @include('layouts.nav')
 
-{{-- @dd(Auth::user()->roles()) --}}
-
-{{-- @foreach (Auth::user()->roles as $role)
-    @dd(Auth::user()->roles)
-@endforeach --}}
-
-{{-- @dd(Auth::user()->company_id) --}}
-
-{{-- @foreach ($roles as $role )
-    @foreach ($role->roles as $role )
-        @dd($role->title)
-    @endforeach
-@endforeach --}}
-
-{{-- @foreach (Auth::user()->roles as $role)
-    @dd($role->title)
-    <div class="bg-red-400 text-white mt-24">
-        {{ $role->title }}
-    </div>
-@endforeach --}}
-
 
 
 

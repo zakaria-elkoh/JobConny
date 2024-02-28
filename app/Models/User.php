@@ -54,6 +54,15 @@ class User extends Authenticatable implements HasMedia
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function hasRoleName($roleName) 
+    {
+        return $this->roles->contains('title', $roleName);
+    }
+
+    public function hasRole($roleName) 
+    {
+        return $this->roles()->where('title', $roleName)->exists();
+    }
 
     public function roles()
     {

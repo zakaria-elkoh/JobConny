@@ -1,5 +1,14 @@
 <?php
 
+
+use App\Http\Controllers\Admin\JobOfferController as AdminJobOfferController;
+use App\Http\Controllers\Admin\RoleController as AdminRoleController;
+use App\Http\Controllers\Admin\SectorController as AdminSectorController;
+use App\Http\Controllers\Admin\CompanyController as AdminCompanyController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\ProfileController;
+use App\Models\JobOffer;
+
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Representative\UserController as RepresentativeUserController;
@@ -21,7 +30,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::view('/', 'index');
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::resource('sectors', AdminSectorController::class)->names('admin.sectors');
+    Route::resource('users', AdminUserController::class)->names('admin.users');
+    Route::resource('companies', AdminCompanyController::class)->names('admin.companies');
+    Route::resource('roles', AdminRoleController::class)->names('admin.roles');
+    Route::resource('joboffers', AdminJobOfferController::class)->names('admin.joboffers');
+});
+
+Route::prefix('recruteur')->group(function () {
+});
 
 Route::get('/', function () {
     return view('index');
@@ -33,9 +51,12 @@ Route::get('/home', function () {
 
 
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
 
 Route::middleware('auth')->group(function () {
     // user routes

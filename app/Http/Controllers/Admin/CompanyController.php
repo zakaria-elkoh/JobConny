@@ -1,66 +1,29 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\company;
-use App\Http\Requests\StorecompanyRequest;
-use App\Http\Requests\UpdatecompanyRequest;
+use App\Http\Controllers\Controller;
+use App\Models\Company;
+use App\Policies\CompanyPolicy; 
+use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        // $this->authorize('viewAny', Company::class); 
+
+        $companies = Company::paginate(10); 
+
+        return view('admin.companies.index', compact('companies'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function destroy(Company $company)
     {
-        //
-    }
+        // $this->authorize('delete', $company);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorecompanyRequest $request)
-    {
-        //
-    }
+        $company->delete();
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(company $company)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(company $company)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatecompanyRequest $request, company $company)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(company $company)
-    {
-        //
+        return redirect()->route('admin.companies.index')->with('success', 'Company deleted.');
     }
 }

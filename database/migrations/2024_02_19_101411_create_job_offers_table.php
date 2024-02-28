@@ -16,10 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('contract_type');
-            // sector foreign key.
+            // foreign key.
             $table->unsignedBigInteger('sector_id');
             $table->foreign('sector_id')->references('id')->on('sectors')->onDelete('cascade');
-            // company foreign key.
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
             $table->integer('experience_years');

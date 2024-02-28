@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Sector;
 use App\Http\Requests\StoreSectorRequest;
 use App\Http\Requests\UpdateSectorRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class SectorController extends Controller
 {
@@ -13,7 +15,9 @@ class SectorController extends Controller
      */
     public function index()
     {
-        //
+        // Gate::authorize('manage-sectors');
+        $sectors=Sector::all();
+        return view('admin.sector.index',compact('sectors'));
     }
 
     /**
@@ -21,7 +25,8 @@ class SectorController extends Controller
      */
     public function create()
     {
-        //
+        // Gate::authorize('manage-sectors');
+        return view('admin.sector.create');
     }
 
     /**
@@ -29,7 +34,10 @@ class SectorController extends Controller
      */
     public function store(StoreSectorRequest $request)
     {
-        //
+        // Gate::authorize('manage-sectors');
+        $sector = Sector::create($request->all());
+        $sector->save();
+        return redirect('admin/sectors');
     }
 
     /**
@@ -37,7 +45,9 @@ class SectorController extends Controller
      */
     public function show(Sector $sector)
     {
-        //
+        // Gate::authorize('manage-sectors');
+        $sector = Sector::all();
+        return view('admin.sector.index',compact('sector'));
     }
 
     /**
@@ -45,7 +55,8 @@ class SectorController extends Controller
      */
     public function edit(Sector $sector)
     {
-        //
+        Gate::authorize('manage-sectors');
+        return view('admin.sector.edit',compact('sector'));
     }
 
     /**
@@ -53,7 +64,10 @@ class SectorController extends Controller
      */
     public function update(UpdateSectorRequest $request, Sector $sector)
     {
-        //
+        Gate::authorize('manage-sectors');
+        $sector->title=$request->title;
+        $sector->save();
+        return redirect('admin/sectors');
     }
 
     /**
@@ -61,6 +75,8 @@ class SectorController extends Controller
      */
     public function destroy(Sector $sector)
     {
-        //
+        Gate::authorize('manage-sectors');
+        $sector->delete();
+        return redirect('admin/sectors');
     }
 }
