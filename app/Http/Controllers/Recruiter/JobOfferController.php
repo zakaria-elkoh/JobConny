@@ -20,7 +20,7 @@ class JobOfferController extends Controller
     public function index()
     {
         $jobOffers = JobOffer::where('company_id', Auth::user()->company_id)->paginate(10);
-        return view('recruiter.joboffers.index', compact('jobOffers')); 
+        return view('recruiter.joboffers.index', compact('jobOffers'));
     }
 
     /**
@@ -30,7 +30,7 @@ class JobOfferController extends Controller
     {
         $sectors = Sector::all();
         $company_id = Auth::user()->company_id;;
-        return view('recruiter.joboffers.create', compact('sectors','company_id'));
+        return view('recruiter.joboffers.create', compact('sectors', 'company_id'));
     }
 
     public function store(Request $request)
@@ -39,20 +39,22 @@ class JobOfferController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'contract_type' => 'required|string',
-            'sector_id' => 'required|exists:sectors,id',
-            'company_id' => 'required|exists:companies,id',
+            'sector_id' => 'required',
+            'company_id' => 'required',
             'experience_years' => 'required|integer',
             'city' => 'required|string',
             'salary' => 'required|numeric',
             'image' => 'nullable|image|max:2048'
         ]);
+
+
         $jobOffer = JobOffer::create($validatedData);
- 
-        if ($request->hasFile('image')) {
-            $jobOffer->addMediaFromRequest('image')
-                     ->toMediaCollection('job-offers'); 
-        }
-        return redirect('recruiter/joboffers'); 
+
+        // if ($request->hasFile('image')) {
+        //     $jobOffer->addMediaFromRequest('image')
+        //              ->toMediaCollection('job-offers'); 
+        // }
+        return redirect('recruiter/joboffers');
     }
 
     public function show(JobOffer $jobOffer)
@@ -63,8 +65,8 @@ class JobOfferController extends Controller
     public function edit($id)
     {
         $sectors = Sector::all();
-        $jobOffer = JobOffer::findOrFail($id); 
-        return view('recruiter.joboffers.edit', compact('jobOffer','sectors'));
+        $jobOffer = JobOffer::findOrFail($id);
+        return view('recruiter.joboffers.edit', compact('jobOffer', 'sectors'));
     }
     public function update(Request $request, JobOffer $jobOffer)
     {
@@ -76,18 +78,17 @@ class JobOfferController extends Controller
             'experience_years' => 'required|integer',
             'salary' => 'required|numeric',
             'city' => 'required|string',
-            'image' => 'nullable|image|max:2048' 
+            'image' => 'nullable|image|max:2048'
         ]);
 
         $jobOffer->update($validatedData);
 
         if ($request->hasFile('image')) {
             $jobOffer->addMediaFromRequest('image')
-                    ->toMediaCollection('job-offers');
+                ->toMediaCollection('job-offers');
         }
 
         return redirect()->route('recruiter.joboffers.index')->with('success', 'Job Offer updated!');
-
     }
 
     public function destroy(JobOffer $jobOffer)

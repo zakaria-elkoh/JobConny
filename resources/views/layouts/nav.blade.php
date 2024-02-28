@@ -22,16 +22,6 @@
                 <li>
                     <a href="{{route('users.index')}}" class="{{ Route::is('users.index') ? 'text-blue-400' : 'text-white'; }} block mb-8 md:mb-0 py-2 px-3 rounded hover:text-blue-400 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0">Employees</a>
                 </li>
-                @can('isRecruiter') 
-                    <li>
-                        <a href="{{route('recruiter.joboffers.index')}}" class="text-white block mb-8 md:mb-0 py-2 px-3 rounded hover:text-blue-400 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0">Dashboard</a>
-                    </li>
-               @endcan
-               @can('isAdmin') 
-                    <li>
-                        <a href="{{route('admin.users.index')}}" class="text-white block mb-8 md:mb-0 py-2 px-3 rounded hover:text-blue-400 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0">Dashboard</a>
-                    </li>
-               @endcan 
                 @can('isUserWithoutProfile')
                     <li>
                         <a href="{{route('users.create')}}" class="{{ Route::is('users.create') ? 'text-blue-400' : 'text-white'; }} block mb-8 md:mb-0 py-2 px-3 rounded hover:text-blue-400 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:p-0">Complete profile</a>

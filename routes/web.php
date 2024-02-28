@@ -53,22 +53,9 @@ Route::prefix('recruteur')->group(function () {
 Route::get('/', [JobOfferController::class , 'index'])->name('home');
 Route::get('/home', [JobOfferController::class , 'index'])->name('home');
 
-// Route::get('/', function () {
-//     return view('index');
-// })->name('home');
-
-// Route::get('/home', function () {
-//     return view('index');
-// })->name('home');
-
-
-
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-
 
 Route::middleware('auth')->group(function () {
     // user routes

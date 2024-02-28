@@ -15,10 +15,9 @@ class SectorSeeder extends Seeder
     public function run(): void
     {
         $sectors = [
-            ['title' => 'Admin'],
-            ['title' => 'Recruiter'],
-            ['title' => 'Rh'],
-            ['title' => 'User']
+            ['title' => 'IT'],
+            ['title' => 'health'],
+            ['title' => 'Gov']
         ];
 
         foreach ($sectors as $sector) {
